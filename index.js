@@ -66,7 +66,7 @@ function processLength(list, callback) {
  * Invoking `processLastItem` passing `['foo', 'bar']` and `(str) => str + str`,
  * should return 'barbar'.
 */
-function processLastItem(stringLast, callback) {
+function processLastItem(stringList, callback) {
   let lastItem = stringList.pop();
   return callback(lastItem);
 }
@@ -88,8 +88,9 @@ function processLastItem(stringLast, callback) {
  * [2] Invoking `processSum` passing `[]` and `(num) => num + 1000`,
  * should return 1000.
 */
-function processSum(/* CODE HERE */) {
-  /* CODE HERE */
+function processSum(numberList, callback) {
+  let sum = numberList.reduce((acc, val) => { return acc + val; }, 0);
+  return callback(sum);
 }
 
 /**
@@ -111,7 +112,7 @@ function processSum(/* CODE HERE */) {
  * should return 1000.
 */
 function processProduct(num1, num2, callback) {
-  return callback (num1 * num2);
+  return callback(num1 * num2);
 }
 
 /**
@@ -136,7 +137,7 @@ function processProduct(num1, num2, callback) {
 */
 function processContains(item, list, callback) {
   return callback(list.includes(item));
-  
+
 }
 
 /**
@@ -216,7 +217,8 @@ function firstNamesAllCaps(runners) {
  * The runners in the array appear in the same order they appear in the `runners` array.
 */
 function getRunnersByTShirtSize(runners, tShirtSize) {
-  return runners.filter((tShirts) => { return tShirts.shirt_size === tShirtSize; })}
+  return runners.filter((tShirts) => { return tShirts.shirt_size === tShirtSize; })
+}
 
 /**
  * ### Challenge `tallyUpDonations`
@@ -230,7 +232,8 @@ function getRunnersByTShirtSize(runners, tShirtSize) {
 */
 function tallyUpDonations(runners) {
   let sum = (key) => { return runners.reduce((a, b) => a + (b[key] || 0), 0); }
-  return sum('donation');}
+  return sum('donation');
+}
 
 /////////////// CLOSURES ///////////////
 /////////////// CLOSURES ///////////////
@@ -251,7 +254,7 @@ function tallyUpDonations(runners) {
 function counterMaker() {
   // BROKEN CODE STARTS
   let count = 0;
-  return function() {
+  return function () {
     ++count;
     return count - 1;
   }
@@ -281,8 +284,8 @@ function counterMaker() {
 function counterMakerWithLimit(maxNum) {
   let count = 0;
 
-  return function() {
-    if(count > maxNum) {
+  return function () {
+    if (count > maxNum) {
       count = 1;
     } else {
       count++;
